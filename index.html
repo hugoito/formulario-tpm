@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificado Digital TPM</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <form action="">
@@ -13,8 +15,9 @@
             <legend>Certificado Digital TPM</legend>
 
 
-             <div class="bloco-pergunta">
-                <label for="nome-completo" class="pergunta"><b>Informe o seu nome Completo</b><span class="obrigatorio">*</span></label>
+            <div class="bloco-pergunta">
+                <label for="nome-completo" class="pergunta"><b>Informe o seu nome Completo</b><span
+                        class="obrigatorio">*</span></label>
                 <div class="opcoes">
                     <input type="text" id="nome-completo" name="nome-completo">
                 </div>
@@ -28,116 +31,145 @@
             </div>
 
             <div class="bloco-pergunta">
-                <label for="nome-empresa" class="pergunta"><b>Informe o nome da empresa de trabalho</b><span class="obrigatorio">*</span></label>
+                <label for="nome-empresa" class="pergunta"><b>Informe o nome da empresa de trabalho</b><span
+                        class="obrigatorio">*</span></label>
                 <div class="opcoes">
                     <input type="text" id="nome-empresa" name="nome-empresa">
                 </div>
             </div>
 
             <div class="bloco-pergunta">
-                <label for="e-mail-empresa" class="pergunta"><b>Informe o e-mail da empresa</b><span class="obrigatorio">*</span></label>
+                <label for="e-mail-empresa" class="pergunta"><b>Informe o e-mail da empresa</b><span
+                        class="obrigatorio">*</span></label>
                 <div class="opcoes">
                     <input type="email" name="e-mail-empresa" id="e-mail-empresa">
                 </div>
             </div>
-
+            <!-- 
             <div class="bloco-pergunta">
-                <label for="patrimonio-equipamento" class="pergunta"><b>Informe o patrimônio do equipamento que deseja instalação do certificado TPM </b><span class="obrigatorio">*</span></label>
+                <label for="patrimonio-equipamento" class="pergunta"><b>Informe o patrimônio do equipamento que deseja
+                        instalação do certificado TPM </b><span class="obrigatorio">*</span></label>
                 <div class="opcoes">
                     <input type="text" id="patrimonio-equipamento" name="patrimonio-equipamento">
                 </div>
             </div>
+            -->
 
-<div class="bloco-pergunta">
-            <label class="pergunta"><b>Já possui certificado TPM emitido</b><span class="obrigatorio">*</span></label>
-            <div class="opcoes">
-                <input type="radio" id="tpm_sim" name="tpm" onclick="gerenciarFormulario()"> 
-                <label for="tpm_sim">Sim</label>
-                <input type="radio" id="tpm_nao" name="tpm" onclick="gerenciarFormulario()"> 
-                <label for="tpm_nao">Não</label>
+            <div class="bloco-pergunta">
+                <label class="pergunta"><b>Já possui certificado TPM emitido</b><span
+                        class="obrigatorio">*</span></label>
+                <div class="opcoes">
+                    <input type="radio" id="tpm_sim" name="tpm" onclick="gerenciarFormulario()">
+                    <label for="tpm_sim">Sim</label>
+                    <input type="radio" id="tpm_nao" name="tpm" onclick="gerenciarFormulario()">
+                    <label for="tpm_nao">Não</label>
+                </div>
             </div>
-        </div>
 
-        <div class="bloco-pergunta escondido" id="container-maquina">
-            <label class="pergunta"><b>O certificado será utilizado em outra máquina</b><span class="obrigatorio">*</span></label>
-            <div class="opcoes">
-                <input type="radio" id="maquina_sim" name="maquina" onclick="gerenciarFormulario()"> 
-                <label for="maquina_sim">Sim</label>
-                <input type="radio" id="maquina_nao" name="maquina" onclick="gerenciarFormulario()"> 
-                <label for="maquina_nao">Não</label>
+            <div class="bloco-pergunta escondido" id="container-maquina">
+                <label class="pergunta"><b>O certificado será utilizado em outra máquina</b><span
+                        class="obrigatorio">*</span></label>
+                <div class="opcoes">
+                    <input type="radio" id="maquina_sim" name="maquina" onclick="gerenciarFormulario()">
+                    <label for="maquina_sim">Sim</label>
+                    <input type="radio" id="maquina_nao" name="maquina" onclick="gerenciarFormulario()">
+                    <label for="maquina_nao">Não</label>
+                </div>
             </div>
-        </div>
 
-        <div class="bloco-pergunta escondido" id="container-motivo">
-            <label class="pergunta"><b>Selecione o motivo da reemissão:</b><span class="obrigatorio">*</span></label>
-            <div class="opcoes">
-                <select id="motivos" name="motivos">
-                    <option value="" disabled selected hidden>Selecione uma opção...</option>
-                    <option value="puk-pin">Puk/Pin bloqueado</option>
-                    <option value="formatação">Formatação de Máquina</option>
-                    <option value="troca">Troca de Máquina</option>
-                </select>
+              <!--Este é um novo bloco de teste -->
+            <div class="bloco-pergunta escondido" id="container-patrimonio">
+                <label for="patrimonio-equipamento" class="pergunta"><b>Informe o patrimônio do equipamento que deseja
+                        instalação do certificado TPM </b><span class="obrigatorio">*</span></label>
+                <div class="opcoes">
+                    <input type="text" id="patrimonio-equipamento" name="patrimonio-equipamento">
+                </div>
+
+
             </div>
-        </div>
 
-        <div class="aviso escondido" id="container-aviso-geral">
-            <p>
-                <b>ATENÇÃO:</b> antes de Enviar a solicitação é necessário clicar no botão 
-                <input type="button" value="Gerar Termo"> 
-                O Responsável pela UA, RTE do produto ao qual o terceiro está atuando... (e-mail dti_aprovacao)
-            </p>
-        </div>
+            <div class="bloco-pergunta escondido" id="container-motivo">
+                <label class="pergunta"><b>Selecione o motivo da reemissão:</b><span
+                        class="obrigatorio">*</span></label>
+                <div class="opcoes">
+                    <select id="motivos" name="motivos">
+                        <option value="" disabled selected hidden>Selecione uma opção...</option>
+                        <option value="puk-pin">Puk/Pin bloqueado</option>
+                        <option value="formatação">Formatação de Máquina</option>
+                        <option value="troca">Troca de Máquina</option>
+                    </select>
+                </div>
+            </div>
+          
 
-        <div class="aviso escondido" id="container-aviso-reemissao">
-            <p>
-                <b>ATENÇÃO:</b> antes de Enviar a solicitação é necessário clicar no botão 
-                <input type="button" value="Gerar Termo - Reemissão"> 
-                O Responsável pela UA, RTE do produto ao qual o terceiro está atuando ou gestor do contrato ao qual o terceiro está vinculado, deverá assinar digitalmente, anexar e enviar para o e-mail: dti_aprovacao@fazenda.sp.gov.br
-            </p>
-        </div>
+            <div class="aviso escondido" id="container-aviso-geral">
+                <p>
+                    <b>ATENÇÃO:</b> antes de Enviar a solicitação é necessário clicar no botão
+                    <input type="button" value="Gerar Termo">
+                    O Responsável pela UA, RTE do produto ao qual o terceiro está atuando... (e-mail dti_aprovacao)
+                </p>
+            </div>
 
-    </fieldset>
-</form>
+            <div class="aviso escondido" id="container-aviso-reemissao">
+                <p>
+                    <b>ATENÇÃO:</b> antes de Enviar a solicitação é necessário clicar no botão
+                    <input type="button" value="Gerar Termo - Reemissão">
+                    O Responsável pela UA, RTE do produto ao qual o terceiro está atuando ou gestor do contrato ao qual
+                    o terceiro está vinculado, deverá assinar digitalmente, anexar e enviar para o e-mail:
+                    dti_aprovacao@fazenda.sp.gov.br
+                </p>
+            </div>
+
+        </fieldset>
+    </form>
 
     <script>
-      function gerenciarFormulario() {
-    // Inputs
-    const tpmSim = document.getElementById('tpm_sim').checked;
-    const tpmNao = document.getElementById('tpm_nao').checked;
-    const maquinaSim = document.getElementById('maquina_sim').checked;
-    const maquinaNao = document.getElementById('maquina_nao').checked;
-    
-    // Containers
-    const divMaquina = document.getElementById('container-maquina');
-    const divMotivo = document.getElementById('container-motivo');
-    const divAvisoGeral = document.getElementById('container-aviso-geral');
-    const divAvisoReemissao = document.getElementById('container-aviso-reemissao');
+        function gerenciarFormulario() {
+            // Inputs
+            const tpmSim = document.getElementById('tpm_sim').checked;
+            const tpmNao = document.getElementById('tpm_nao').checked;
+            const maquinaSim = document.getElementById('maquina_sim').checked;
+            const maquinaNao = document.getElementById('maquina_nao').checked;
 
-    // Reset total antes de aplicar a lógica
-    divMaquina.classList.add('escondido');
-    divMotivo.classList.add('escondido');
-    divAvisoGeral.classList.add('escondido');
-    divAvisoReemissao.classList.add('escondido');
+            // Containers
+            const divMaquina = document.getElementById('container-maquina');
+            const divMotivo = document.getElementById('container-motivo');
+            const divAvisoGeral = document.getElementById('container-aviso-geral');
+            const divAvisoReemissao = document.getElementById('container-aviso-reemissao');
+            const divPatrimonEquip = document.getElementById('container-patrimonio');
 
-    if (tpmNao) {
-        // CASO: Não possui certificado -> Mostra Aviso Geral
-        divAvisoGeral.classList.remove('escondido');
-    } 
-    else if (tpmSim) {
-        // CASO: Sim possui -> Mostra pergunta da máquina
-        divMaquina.classList.remove('escondido');
+            // Reset total antes de aplicar a lógica
+            divMaquina.classList.add('escondido');
+            divMotivo.classList.add('escondido');
+            divAvisoGeral.classList.add('escondido');
+            divAvisoReemissao.classList.add('escondido');
+            divPatrimonEquip.classList.add('escondido');
 
-        if (maquinaSim) {
-            // CASO: Outra máquina -> Mostra Aviso Geral
-            divAvisoGeral.classList.remove('escondido');
-        } 
-        else if (maquinaNao) {
-            // CASO: Mesma máquina -> Mostra Motivo E Novo Aviso de Reemissão
-            divMotivo.classList.remove('escondido');
-            divAvisoReemissao.classList.remove('escondido');
+            if (tpmNao) {
+                // CASO: Não possui certificado -> Mostra Aviso Geral
+                divAvisoGeral.classList.remove('escondido');
+                divPatrimonEquip.classList.remove('escondido');
+
+            }
+            else if (tpmSim) {
+                // CASO: Sim possui -> Mostra pergunta da máquina
+                divMaquina.classList.remove('escondido');
+                
+
+                if (maquinaSim) {
+                    // CASO: Outra máquina -> Mostra Aviso Geral
+                    divAvisoGeral.classList.remove('escondido');
+                    divPatrimonEquip.classList.remove('escondido');
+                }
+                else if (maquinaNao) {
+                    // CASO: Mesma máquina -> Mostra Motivo E Novo Aviso de Reemissão
+                    divMotivo.classList.remove('escondido');
+                    divAvisoReemissao.classList.remove('escondido');
+                    divPatrimonEquip.classList.remove('escondido');
+                }
+            }
         }
-    }
-}
     </script>
 </body>
+
 </html>
