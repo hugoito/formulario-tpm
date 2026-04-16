@@ -14,6 +14,17 @@
         <fieldset>
             <legend>Certificado Digital TPM</legend>
 
+            <div class="bloco-pergunta " id="container-perfil">
+                <label class="pergunta"><b>Selecione o tipo de perfil do usuário</b><span
+                        class="obrigatorio">*</span></label>
+                <div class="opcoes">
+                    <input type="radio" id="perfil-terceiro" name="perfil-user" onclick="gerenciarFormulario() ">  
+                    <label for="maquina_sim">Terceiro</label>
+                    <input type="radio" id="perfil-fazenda" name="perfil-user"  onclick="gerenciarFormulario()">
+                    <label for="maquina_nao">Fazendário</label>
+                </div>
+            </div>
+
 
             <div class="bloco-pergunta">
                 <label for="nome-completo" class="pergunta"><b>Informe o seu nome Completo</b><span
@@ -67,7 +78,7 @@
             </div>
 
             <div class="bloco-pergunta escondido" id="container-maquina">
-                <label class="pergunta"><b>O certificado será utilizado em outra máquina</b><span
+                <label class="pergunta"><b>O certificado será utilizado em uma máquina adicional</b><span
                         class="obrigatorio">*</span></label>
                 <div class="opcoes">
                     <input type="radio" id="maquina_sim" name="maquina" onclick="gerenciarFormulario()">
@@ -77,10 +88,21 @@
                 </div>
             </div>
 
-              <!--Este é um novo bloco de teste -->
+            <!--- 1 - Este é um novo bloco de teste-->
             <div class="bloco-pergunta escondido" id="container-patrimonio">
                 <label for="patrimonio-equipamento" class="pergunta"><b>Informe o patrimônio do equipamento que deseja
                         instalação do certificado TPM </b><span class="obrigatorio">*</span></label>
+                <div class="opcoes">
+                    <input type="text" id="patrimonio-equipamento" name="patrimonio-equipamento">
+                </div>
+
+
+            </div>
+
+            <!-- 2 - Este é um novo bloco de teste-->
+            <div class="bloco-pergunta escondido" id="container-outro-patrimonio">
+                <label for="patrimonio-equipamento" class="pergunta"><b>Informe o patrimônio do equipamento que deseja
+                        instalação adicional do certificado TPM </b><span class="obrigatorio">*</span></label>
                 <div class="opcoes">
                     <input type="text" id="patrimonio-equipamento" name="patrimonio-equipamento">
                 </div>
@@ -100,7 +122,7 @@
                     </select>
                 </div>
             </div>
-          
+
 
             <div class="aviso escondido" id="container-aviso-geral">
                 <p>
@@ -130,6 +152,8 @@
             const tpmNao = document.getElementById('tpm_nao').checked;
             const maquinaSim = document.getElementById('maquina_sim').checked;
             const maquinaNao = document.getElementById('maquina_nao').checked;
+            const perfilUserTer = document.getElementById('perfil-terceiro').checked;
+            const perfilUserFaz = document.getElementById('perfil-fazenda').checked;
 
             // Containers
             const divMaquina = document.getElementById('container-maquina');
@@ -137,6 +161,7 @@
             const divAvisoGeral = document.getElementById('container-aviso-geral');
             const divAvisoReemissao = document.getElementById('container-aviso-reemissao');
             const divPatrimonEquip = document.getElementById('container-patrimonio');
+            const divPatrimonOutroEquip = document.getElementById('container-outro-patrimonio');
 
             // Reset total antes de aplicar a lógica
             divMaquina.classList.add('escondido');
@@ -144,30 +169,56 @@
             divAvisoGeral.classList.add('escondido');
             divAvisoReemissao.classList.add('escondido');
             divPatrimonEquip.classList.add('escondido');
+            divPatrimonOutroEquip.classList.add('escondido');
 
-            if (tpmNao) {
+            if (tpmNao && perfilUserFaz) {
+                // CASO: Não possui certificado -> Mostra Aviso Geral
+                //divAvisoGeral.classList.remove('escondido');
+                divPatrimonEquip.classList.remove('escondido');
+
+            }
+            else if (tpmSim && perfilUserFaz ) {
+                // CASO: Sim possui -> Mostra pergunta da máquina
+                divMaquina.classList.remove('escondido');
+
+
+                if (maquinaSim && perfilUserFaz) {
+                    // CASO: Outra máquina -> Mostra Aviso Geral
+                    //divAvisoGeral.classList.remove('escondido');
+                    divPatrimonOutroEquip.classList.remove('escondido');
+                }
+                else if (maquinaNao && perfilUserFaz) {
+                    // CASO: Mesma máquina -> Mostra Motivo E Novo Aviso de Reemissão
+                    //divMotivo.classList.remove('escondido');
+                    //divAvisoReemissao.classList.remove('escondido');
+                    divPatrimonEquip.classList.remove('escondido');
+                }
+            }
+
+            if (tpmNao && perfilUserTer) {
                 // CASO: Não possui certificado -> Mostra Aviso Geral
                 divAvisoGeral.classList.remove('escondido');
                 divPatrimonEquip.classList.remove('escondido');
 
             }
-            else if (tpmSim) {
+            else if (tpmSim && perfilUserTer) {
                 // CASO: Sim possui -> Mostra pergunta da máquina
                 divMaquina.classList.remove('escondido');
-                
 
-                if (maquinaSim) {
+
+                if (maquinaSim && perfilUserTer) {
                     // CASO: Outra máquina -> Mostra Aviso Geral
                     divAvisoGeral.classList.remove('escondido');
-                    divPatrimonEquip.classList.remove('escondido');
+                    divPatrimonOutroEquip.classList.remove('escondido');
                 }
-                else if (maquinaNao) {
+                else if (maquinaNao && perfilUserTer) {
                     // CASO: Mesma máquina -> Mostra Motivo E Novo Aviso de Reemissão
                     divMotivo.classList.remove('escondido');
                     divAvisoReemissao.classList.remove('escondido');
                     divPatrimonEquip.classList.remove('escondido');
                 }
             }
+
         }
     </script>
 </body>
